@@ -1,0 +1,1 @@
+SELECT COUNT(*) AS USERS FROM user_info WHERE age >= 20 AND age <= 29 AND joined LIKE "2021%";
