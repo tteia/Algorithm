@@ -7,21 +7,12 @@ public class Main {
         int M = sc.nextInt();
         int D = sc.nextInt();
 
-        if (M == 2 && D == 18){
+        if (M < 2 || (M == 2 && D < 18)) {
+            System.out.println("Before");
+        } else if (M == 2 && D == 18) {
             System.out.println("Special");
-        }
-        else if (M < 2){
-            System.out.println("Before");
-        }
-        else if (M == 2 && D < 18){
-            System.out.println("Before");
-        }
-        else if (M > 2){
-            System.out.println("After");
-        }
-        else if (M == 2 && D > 18){
+        } else {
             System.out.println("After");
         }
     }
-
 }
