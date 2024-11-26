@@ -30,12 +30,10 @@ public class Main {
         // 각 숫자에 대해 등장 횟수 계산
         String finds = br.readLine();
         StringTokenizer hm = new StringTokenizer(finds);
-        int idx = 0;
         while (hm.hasMoreTokens()) {
             int num = Integer.parseInt(hm.nextToken());
             int cnt = cardCount.getOrDefault(num, 0);
             bw.write(cnt + " ");
-            idx++;
         }
 
         bw.flush();
