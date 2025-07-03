@@ -1,5 +1,7 @@
--- 보호소 들어올 당시는 중성화 안됨 -> 나갈 때는 중성화 됨
+-- 보호소 전 안함 > 보호소 나갈 때는 중성화 됨
+
 SELECT I.ANIMAL_ID, I.ANIMAL_TYPE, I.NAME FROM ANIMAL_INS I
-JOIN ANIMAL_OUTS O ON I.ANIMAL_ID = O.ANIMAL_ID
-WHERE SEX_UPON_INTAKE LIKE 'Intact%' AND SEX_UPON_OUTCOME REGEXP 'Spayed|Neutered'
+JOIN ANIMAL_OUTS O ON O.ANIMAL_ID = I.ANIMAL_ID
+WHERE I.SEX_UPON_INTAKE LIKE 'Intact%' AND (O.SEX_UPON_OUTCOME LIKE 'Spayed%' OR 
+                                            O.SEX_UPON_OUTCOME LIKE 'Neutered%')
 ORDER BY 1;
