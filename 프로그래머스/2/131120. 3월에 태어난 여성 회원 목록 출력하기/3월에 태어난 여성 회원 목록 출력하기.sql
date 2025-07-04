@@ -1,3 +1,5 @@
--- 코드를 입력하세요
-SELECT member_id, member_name, gender, DATE_FORMAT(date_of_birth,'%Y-%m-%d')
-FROM member_profile WHERE date_of_birth LIKE "%03%" AND GENDER = 'W' AND tlno IS NOT NULL;
+-- 생일 3월 여성 조회 / 전화번호 null 이면 제외
+SELECT MEMBER_ID, MEMBER_NAME, GENDER, TO_CHAR(DATE_OF_BIRTH, 'YYYY-MM-DD') FROM MEMBER_PROFILE
+WHERE TO_CHAR(DATE_OF_BIRTH, 'MM') = '03' AND GENDER = 'W'
+AND TLNO IS NOT NULL
+ORDER BY 1;
