@@ -1,6 +1,6 @@
 # [level 4] 취소되지 않은 진료 예약 조회하기 - 132204 
 
-[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/132204) 
+[문제 링크](https://school.programmers.co.kr/learn/courses/30/lessons/132204?language=oracle) 
 
 ### 성능 요약
 
@@ -16,7 +16,7 @@ Empty
 
 ### 제출 일자
 
-2025년 06월 12일 10:17:02
+2025년 07월 10일 17:25:01
 
 ### 문제 설명
 
