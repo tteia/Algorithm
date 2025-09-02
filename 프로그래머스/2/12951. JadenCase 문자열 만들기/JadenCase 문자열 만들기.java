@@ -1,31 +1,21 @@
-
 class Solution {
-    public String solution(String s) {
-        String answer = "";
-    	String[] arr = s.split(" ");
-    	
-    	for(int i = 0; i < arr.length; i++) {
-    		String now = arr[i];
-    		
-    		if(arr[i].length() == 0) {
-    			answer += " ";
-    		} 
-    		
-    		else {
-    			answer += now.substring(0, 1).toUpperCase();
-    			
-    			answer += now.substring(1, now.length()).toLowerCase();
-    			
-    			answer += " ";
-    		}
-    		
-    	}
-    	
-    	if(s.substring(s.length()-1, s.length()).equals(" ")){
-    		return answer;
-    	}
-    	
-        return answer.substring(0, answer.length()-1);
-    }
 
+    public String solution(String s) {
+        StringBuilder sb = new StringBuilder(s.toLowerCase());
+
+        boolean check = true;
+        
+        for (int i = 0; i < s.length(); i++) {
+            char c = sb.charAt(i);
+
+            if (c == ' ') {
+                check = true;
+            } else if (check) {
+                sb.setCharAt(i, Character.toUpperCase(c));
+                check = false;
+            }
+        }
+
+        return sb.toString();
+    }
 }
