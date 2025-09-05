@@ -1,15 +1,22 @@
 import java.util.*;
-class Solution{
-    public int solution(int []A, int []B){
-        Arrays.sort(A);
-        Arrays.sort(B);
-        
-        int sum = 0;
-        int size = A.length;
-        
-        for(int i = 0; i < size; i++){
-            sum += A[i] * B[size - i - 1];
+
+class Solution
+{    
+    public int solution(int []A, int []B)
+    {
+        int answer = 0;
+        PriorityQueue<Integer> a = new PriorityQueue<>();
+        PriorityQueue<Integer> b = new PriorityQueue<>(Collections.reverseOrder());
+
+        for (int i = 0; i < A.length; i++) {
+            a.add(A[i]);
+            b.add(B[i]);
         }
-        return sum;
+
+        while (!a.isEmpty()) {
+            answer += a.poll() * b.poll();
+        }
+
+        return answer;
     }
 }
