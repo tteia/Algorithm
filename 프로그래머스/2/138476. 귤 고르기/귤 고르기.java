@@ -2,22 +2,20 @@ import java.util.*;
 
 class Solution {
     public int solution(int k, int[] tangerine) {
-        Map<Integer, Integer> map = new HashMap<>();
+        int answer = 0;
+        Map<Integer, Integer> sizeCountMap = new HashMap<>();  
         
-        for (int t : tangerine) {
-            map.put(t, map.getOrDefault(t, 0) + 1);
+        for (int t : tangerine) { 
+            sizeCountMap.put(t, sizeCountMap.getOrDefault(t, 0) + 1); 
         }
         
-        List<Integer> counts = new ArrayList<>(map.values());
-        counts.sort((a, b) -> b - a);
+        List<Integer> sizeCounts = new ArrayList<>(sizeCountMap.values()); 
+        sizeCounts.sort(Comparator.reverseOrder()); 
         
-        int box = 0;
-        int answer = 0;
-        
-        for (int count : counts) {
-            box += count;
-            answer++;
-            if (box >= k) {
+        for (int count : sizeCounts) { 
+            k -= count; 
+            answer++; 
+            if (k <= 0) {
                 break;
             }
         }
