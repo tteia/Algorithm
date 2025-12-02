@@ -1,19 +1,26 @@
 import java.util.*;
-public class Main {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int ans = 0;
-		int n = sc.nextInt();
-		int[] arr = new int[n];
-		for(int i = 0; i < n; i++)
-			arr[i] = sc.nextInt();
-		for(int i = n - 2; i >= 0; i--) {
-			if(arr[i] >= arr[i+1]) {
-				int diff = arr[i] - arr[i + 1] + 1;
-				ans += diff;
-				arr[i] -= diff;
-			}
-		}
-		System.out.println(ans);
-	}
+import java.io.*;
+
+class Main{
+    public static void main(String[] Args) throws Exception{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int[] levels = new int[N];
+        
+        for(int i = 0; i < N; i++){
+            levels[i] = Integer.parseInt(br.readLine());
+        }
+
+        int cnt = 0;
+        
+        for(int i = N - 2; i >= 0; i--){
+            if(levels[i] >= levels[i + 1]){
+                int target = levels[i + 1] - 1;
+                cnt += levels[i] - target;
+                levels[i] = target;
+            }
+        }
+
+        System.out.println(cnt);
+    }
 }
