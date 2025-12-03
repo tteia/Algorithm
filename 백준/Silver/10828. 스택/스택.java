@@ -1,51 +1,45 @@
-import java.io.*;
 import java.util.*;
+import java.io.*;
 
-public class Main {
+class Main {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringBuilder sb = new StringBuilder();
-
-        Stack<Integer> stack = new Stack<>();
         int N = Integer.parseInt(br.readLine());
-        for(int i = 0; i < N; i++){
-            String s = br.readLine();
-            if(s.charAt(1) == 'u'){
-                StringTokenizer str = new StringTokenizer(s);
-                str.nextToken();
-                int num = Integer.parseInt(str.nextToken());
-                stack.push(num);
-                continue;
-            }
-            else if(s.equals("pop")){
-                if(stack.empty()){
-                    sb.append(-1);
+        Stack<Integer> stack = new Stack<>();
+        
+        for (int i = 0; i < N; i++) {
+            StringTokenizer str = new StringTokenizer(br.readLine());
+            String comm = str.nextToken();
+            if (comm.equals("push")) {
+                stack.push(Integer.parseInt(str.nextToken()));
+            } else {
+                switch (comm) {
+                    case "pop": 
+                        if (stack.isEmpty()) {
+                            System.out.println(-1);
+                        } else {
+                            System.out.println(stack.pop());
+                        }
+                        break;
+                    case "size": 
+                        System.out.println(stack.size());
+                        break;
+                    case "empty": 
+                        if (stack.isEmpty()) {
+                            System.out.println(1);
+                        } else {
+                            System.out.println(0);
+                        }
+                        break;
+                    case "top": 
+                        if (stack.isEmpty()) {
+                            System.out.println(-1);
+                        } else {
+                            System.out.println(stack.peek());
+                        }
+                        break;
                 }
-                else sb.append(stack.pop());
             }
-            else if(s.equals("size")){
-                sb.append(stack.size());
-            }
-            else if(s.equals("empty")){
-                if(stack.empty()){
-                    sb.append(1);
-                }
-                else sb.append(0);
-            }
-            else if(s.equals("top")){
-                if(stack.empty()){
-                    sb.append(-1);
-                }
-                else sb.append(stack.peek());
-            }
-            sb.append("\n");
         }
-
-        bw.write(sb.toString());
-        bw.flush();
-        bw.close();
-        br.close();
     }
 }
