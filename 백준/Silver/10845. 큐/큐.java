@@ -2,58 +2,45 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-
-        int N = Integer.parseInt(br.readLine());
-        Queue<Integer> queue = new LinkedList<>();
-        int num = 0;
-
-        for(int i = 0; i < N; i++){
-            String line = br.readLine();
-            if(line.contains(" ")){
-                StringTokenizer st = new StringTokenizer(line);
-                st.nextToken();
-                num = Integer.parseInt(st.nextToken());
-                queue.add(num);
-                continue;
-            }
-            switch (line){
-                case "pop":
-                    if(queue.isEmpty()){
-                        bw.write("-1");
-                    }
-                    else bw.write(String.valueOf(queue.poll()));
-                    break;
-                case "size":
-                    bw.write(String.valueOf(queue.size()));
-                    break;
-                case "empty":
-                    if(queue.isEmpty()){
-                        bw.write("1");
-                    }
-                    else bw.write("0");
-                    break;
-                case "front":
-                    if(queue.isEmpty()){
-                        bw.write("-1");
-                    }
-                    else bw.write(String.valueOf(queue.peek()));
-                    break;
-                case "back":
-                    if(queue.isEmpty()){
-                        bw.write("-1");
-                    }
-                    else bw.write(String.valueOf(num));
-                    break;
-            }
-            bw.newLine();
-        }
-
-        bw.flush();
-        bw.close();
-        br.close();
-    }
+	public static void main(String[] args) throws IOException {
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        
+		int N = Integer.parseInt(br.readLine());
+		StringBuilder sb = new StringBuilder();
+		Queue<Integer> que = new LinkedList<Integer>();
+		int last = 0;
+		
+		for(int i = 0; i < N; i++) {
+			StringTokenizer st = new StringTokenizer(br.readLine());
+			String S = st.nextToken();
+			
+			switch(S) {
+			case "push" :
+				last = Integer.parseInt(st.nextToken());
+				que.offer(last);
+				break;
+			case "pop" :
+				if(que.isEmpty()) sb.append(-1).append("\n");
+				else sb.append(que.poll()).append("\n");
+				break;
+			case "size" :
+				sb.append(que.size()).append("\n");
+				break;
+			case "empty" :
+				if(que.isEmpty()) sb.append(1).append("\n");
+				else sb.append(0).append("\n");
+				break;
+			case "front" :
+				if(que.isEmpty()) sb.append(-1).append("\n");
+				else sb.append(que.peek()).append("\n");
+				break;
+			case "back" :
+				if(que.isEmpty()) sb.append(-1).append("\n");
+				else sb.append(last).append("\n");
+				break;
+			}
+		}
+		System.out.println(sb);
+	}
+	
 }
