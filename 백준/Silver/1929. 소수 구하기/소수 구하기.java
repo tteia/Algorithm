@@ -1,38 +1,29 @@
-import java.io.*;
 import java.util.*;
 
-public class Main {
-    static int N, M;
+public class Main{
+public static void main(String[] arg) {
 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringBuilder sb = new StringBuilder();
+        Scanner sc = new Scanner(System.in);
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
-        M = Integer.parseInt(st.nextToken());
-        N = Integer.parseInt(st.nextToken());
+        int m = sc.nextInt();
+        int n = sc.nextInt();
 
-        for(int i = M; i <= N; i++){
-            if(check(i) > 0 && i != 1) sb.append(i).append("\n");
-        }
+        boolean[] num_lit = new boolean[n + 1];
+        Arrays.fill(num_lit, false);
 
-        bw.write(sb.toString());
-        bw.flush();
-        bw.close();
-        br.close();
-    }
+        num_lit[0] = true; 
+        num_lit[1] = true; 
 
-    public static int check(int num){
-        int tmp = -1;
-        double dnum = num;
-        if(Math.sqrt(dnum)== Math.floor(Math.sqrt(dnum))) return tmp;
-        for(int i = 2; i * i <= num; i++){
-            if(num % i == 0 && i != num){
-                return tmp;
+        for (int i = 2; i <= (int)Math.sqrt(n); i++) {
+            if(num_lit[i]) 
+                continue;
+            for (int j = i + i; j <= n; j+=i) {
+                num_lit[j] = true;
             }
         }
-        tmp = num;
-        return tmp;
+        for (int i = m; i <= n; i++) {
+            if(!num_lit[i])
+                System.out.println(i);
+        }
     }
 }
