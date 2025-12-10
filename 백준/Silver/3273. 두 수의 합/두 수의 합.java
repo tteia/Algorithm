@@ -1,39 +1,34 @@
-import java.util.Arrays;
-import java.util.Scanner;
- 
+import java.io.*;
+import java.util.*;
+
 public class Main {
-	public int count(int N, int[] arr, int X) {
-		int result = 0;
-		int sum = 0;
-		int lt = 0;
-		int rt = N - 1;
+	static int n,x;
+	static int[] arr;
+	public static void main(String[] args) throws IOException{
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		
+		n = Integer.parseInt(br.readLine());
+		arr = new int[n];
+		
+		StringTokenizer st = new StringTokenizer(br.readLine());
+		for(int i = 0; i < n; i++)
+			arr[i] = Integer.parseInt(st.nextToken());
+		
+		x = Integer.parseInt(br.readLine());
 		
 		Arrays.sort(arr);
-		
-		while(lt < rt) {
-			sum = arr[rt] + arr[lt];
-			
-			if(sum == X) result ++;
-			
-			if(sum < X) {
-				lt ++;
-			}else {
-				rt --;
+		int s = 0 , e = n - 1, ans = 0;
+		while(s < e) {
+			int sum = arr[s]+arr[e];
+			if(sum == x) {
+				ans++;
+				s++;
+				continue;
 			}
+			else if(sum < x) s++;
+			else e--;
 		}
-		return result;
-	}
-	
-	public static void main(String[] args) {
-		Main num = new Main();
-		Scanner sc = new Scanner(System.in);
-		int N = sc.nextInt();
-		int[] arr = new int[N];
-		for(int i = 0; i < N; i++) {
-			arr[i] = sc.nextInt();
-		}
-		int X = sc.nextInt();
 		
-		System.out.println(num.count(N, arr, X));
+		System.out.println(ans);
 	}
 }
