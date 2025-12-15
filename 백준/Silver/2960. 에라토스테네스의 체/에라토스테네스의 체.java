@@ -1,28 +1,30 @@
+import java.io.*;
 import java.util.*;
 
-public class Main{
-    public static void main(String[] args){
-        Queue<Integer> queue = new LinkedList<>();
-        Scanner sc = new Scanner(System.in);
-        
-        int N = sc.nextInt();
-        int K = sc.nextInt();
-        
-        for(int i = 2; i <= N; i++){
-            if(queue.contains(i) == true) continue;
-            else {
-                queue.add(i);
-                for(int j = i * 2; j <= N; j += i){
-                    if(queue.contains(j) == true) continue;
-                    else queue.add(j);
+public class Main {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
+
+        boolean[] removed = new boolean[N + 1];
+        int cnt = 0;
+
+        for (int p = 2; p <= N; p++) {
+            if (removed[p]) continue;
+
+            for (int i = p; i <= N; i += p) {
+                if (!removed[i]) {
+                    removed[i] = true;
+                    cnt++;
+                    if (cnt == K) {
+                        System.out.println(i);
+                        return;
+                    }
                 }
             }
         }
-        
-        for(int i = 1; i <= N; i++){
-            if(i == K) System.out.print(queue.poll());
-            else queue.poll();
-        }
-        
     }
 }
