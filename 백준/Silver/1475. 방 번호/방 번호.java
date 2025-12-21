@@ -1,27 +1,27 @@
-import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        String str = br.readLine();
-        int[] arr = new int[10];
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int[] nums = new int[10];
 
-        for (int i = 0; i < str.length(); i++) {
-            int num = str.charAt(i) - '0';
-            if (num == 6) arr[9]++;
-            else arr[num]++;
+        String input = sc.nextLine();
+        for(int i = 0; i < input.length(); i++) {
+            nums[input.charAt(i) - '0']++;
         }
+        int answer  =0;
+        int reverse = 0;
 
-        arr[9] = (arr[9] + 1) / 2;
-
-        int max = 0;
-        for (int cnt : arr) {
-            max = Math.max(max, cnt);
+        for(int i = 0; i < 10; i++) {
+            if(i == 6 || i == 9) {
+                reverse+=nums[i];
+            } else {
+                answer = Math.max(answer, nums[i]);
+            }
         }
-
-        bw.write(String.valueOf(max));
-        bw.flush();
+        answer = Math.max(reverse/2 + reverse%2, answer);
+        
+        System.out.println(answer);
     }
 }
