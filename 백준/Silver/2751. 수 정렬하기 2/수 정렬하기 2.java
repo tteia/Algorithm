@@ -5,28 +5,27 @@ public class Main {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringBuilder sb = new StringBuilder();
 
         int N = Integer.parseInt(br.readLine());
-        int[] arr = new int[N];
+
+        ArrayList<Integer> list = new ArrayList<Integer>();
 
         for(int i = 0; i < N; i++){
-            arr[i] = Integer.parseInt(br.readLine());
+            list.add(Integer.parseInt(br.readLine()));
         }
 
-        Arrays.sort(arr);
+        br.close();
 
-        sb.append(arr[0]).append('\n');
+        Collections.sort(list);
 
-        for (int i = 1; i < N; i++) {
-            if (arr[i] != arr[i - 1]) {
-                sb.append(arr[i]).append('\n');
-            }
+        for(int i : list){
+            bw.write(i + "\n");
         }
 
-        bw.write(String.valueOf(sb));
+
         bw.flush();
         bw.close();
-        br.close();
+
+
     }
 }
