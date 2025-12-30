@@ -1,30 +1,37 @@
-import java.util.Scanner;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.ArrayList;
+import java.io.*;
+import java.util.*;
 
 public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int N = sc.nextInt();
-        int[] A = new int[N];
-        int[] B = new int[N];
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        for(int i = 0; i < N; i++){
-            A[i] = sc.nextInt();
+        int N = Integer.parseInt(br.readLine());
+
+        int[] A = new int[N];
+        Integer[] B = new Integer[N];
+
+        st = new StringTokenizer(br.readLine());
+
+        for (int i = 0; i < N; i++) {
+            A[i] = Integer.parseInt(st.nextToken());
         }
-        for(int i = 0; i < N; i++){
-            B[i] = sc.nextInt();
+
+        st = new StringTokenizer(br.readLine());
+
+        for (int i = 0; i < N; i++) {
+            B[i] = Integer.parseInt(st.nextToken());
         }
 
         Arrays.sort(A);
-        Arrays.sort(B);
+        Arrays.sort(B,Collections.reverseOrder());
 
-        int answer = 0;
-        for(int i = 0; i < N; i++){
-            answer += A[i] * B[N - 1 - i];
+        int count = 0;
+
+        for (int i = 0; i < N; i++) {
+            count += (A[i] * B[i]);
         }
-        System.out.println(answer);
-    }
 
+        System.out.println(count);
+    }
 }
