@@ -1,42 +1,76 @@
-import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(System.out)));
-        Deque<Integer> dq = new ArrayDeque<>();
-        int N = Integer.parseInt(br.readLine());
-        while (N-- > 0) {
-            StringTokenizer st = new StringTokenizer(br.readLine());
-            String cmd = st.nextToken();
-            switch (cmd) {
-                case "push_front":
-                    dq.addFirst(Integer.parseInt(st.nextToken()));
-                    break;
-                case "push_back":
-                    dq.addLast(Integer.parseInt(st.nextToken()));
-                    break;
-                case "pop_front":
-                    pw.println(dq.isEmpty() ? -1 : dq.removeFirst());
-                    break;
-                case "pop_back":
-                    pw.println(dq.isEmpty() ? -1 : dq.removeLast());
-                    break;
-                case "size":
-                    pw.println(dq.size());
-                    break;
-                case "empty":
-                    pw.println(dq.isEmpty() ? 1 : 0);
-                    break;
-                case "front":
-                    pw.println(dq.isEmpty() ? -1 : dq.peekFirst());
-                    break;
-                case "back":
-                    pw.println(dq.isEmpty() ? -1 : dq.peekLast());
-                    break;
-            }
-        }
-        pw.flush();
-    }
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		Deque<Integer> deque = new ArrayDeque<>();
+		
+		int N = sc.nextInt();
+		
+		for (int i = 0; i < N; i++) {
+			String st = sc.next();
+			
+			switch(st) {
+			case "push_front":
+				int fnum = sc.nextInt();
+				deque.offerFirst(fnum);
+				break;
+				
+			case "push_back":
+				int bnum = sc.nextInt();
+				deque.offerLast(bnum);
+				break;
+				
+			case "pop_front":
+				if(!deque.isEmpty()) {
+					int pollf = deque.pollFirst();
+					System.out.println(pollf);
+				}else {
+					System.out.println(-1);
+				}
+				break;
+				
+			case "pop_back":
+				if(!deque.isEmpty()) {
+					int polll = deque.pollLast();
+					System.out.println(polll);
+				}else {
+					System.out.println(-1);
+				}
+				break;
+				
+			case "size":
+				System.out.println(deque.size());
+				break;
+				
+			case "empty":
+				if(deque.isEmpty()) {
+					System.out.println(1);
+				}else {
+					System.out.println(0);
+				}
+				break;
+				
+			case "front":
+				if(!deque.isEmpty()) {
+					int peekf = deque.peekFirst();
+					System.out.println(peekf);
+				}else {
+					System.out.println(-1);
+				}
+				break;
+				
+			case "back":
+				if(!deque.isEmpty()) {
+					int peekl = deque.peekLast();
+					System.out.println(peekl);
+				}else {
+					System.out.println(-1);
+				}
+				break;
+			
+			}
+		}
+		sc.close();
+	}
 }
