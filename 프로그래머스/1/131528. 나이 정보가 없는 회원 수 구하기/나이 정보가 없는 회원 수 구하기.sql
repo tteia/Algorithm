@@ -1,1 +1,2 @@
-select count(*) as USERS from user_info where age is null;
+SELECT COUNT(*) FROM USER_INFO
+WHERE AGE IS NULL;
